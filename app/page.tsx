@@ -1,6 +1,6 @@
 import { BackgroundMedia } from "@/components/BackgroundMedia";
 import { Countdown } from "@/components/Countdown";
-import { ShareLocation } from "@/components/ShareLocation";
+import { LocationButton } from "@/components/LocationButton";
 
 function DiamondRule() {
   return (
@@ -46,7 +46,7 @@ export default function Home() {
           <p className="font-serif text-[1.1rem] italic leading-snug text-white/90">
             Flora Charishma Residency
           </p>
-          <ShareLocation />
+          <LocationButton />
         </footer>
       </div>
     </main>

@@ -8,20 +8,20 @@ type Remaining = {
   days: number;
   hours: number;
   minutes: number;
-  seconds: number;
   done: boolean;
 };
 
 function getRemaining(now: number): Remaining {
   const diff = Math.max(0, WEDDING_AT - now);
   if (diff === 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0, done: true };
+    return { days: 0, hours: 0, minutes: 0, done: true };
   }
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-  return { days, hours, minutes, seconds, done: false };
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    done: false,
+  };
 }
 
 function LeafDivider() {
@@ -68,12 +68,7 @@ export function Countdown() {
   }, []);
 
   if (!remaining) {
-    return (
-      <div
-        className="flex h-[4.5rem] items-center justify-center"
-        aria-hidden
-      />
-    );
+    return <div className="flex h-[4.5rem] items-center justify-center" aria-hidden />;
   }
 
   if (remaining.done) {

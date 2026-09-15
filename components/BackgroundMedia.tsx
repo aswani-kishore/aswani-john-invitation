@@ -12,19 +12,25 @@ export function BackgroundMedia() {
     audio.volume = 0.5;
 
     const playMusic = () => {
-      void audio.play().catch(() => {
-        /* Autoplay blocked until gesture */
-      });
+      void audio.play().catch(() => {});
+    };
+
+    playMusic();
+
+    document.addEventListener("click", playMusic);
+    document.addEventListener("scroll", playMusic, { passive: true });
+    document.addEventListener("touchstart", playMusic, { passive: true });
+
+    const onPlaying = () => {
       document.removeEventListener("click", playMusic);
       document.removeEventListener("scroll", playMusic);
       document.removeEventListener("touchstart", playMusic);
     };
 
-    document.addEventListener("click", playMusic, { once: true });
-    document.addEventListener("scroll", playMusic, { once: true, passive: true });
-    document.addEventListener("touchstart", playMusic, { once: true, passive: true });
+    audio.addEventListener("playing", onPlaying);
 
     return () => {
+      audio.removeEventListener("playing", onPlaying);
       document.removeEventListener("click", playMusic);
       document.removeEventListener("scroll", playMusic);
       document.removeEventListener("touchstart", playMusic);
@@ -56,7 +62,7 @@ export function BackgroundMedia() {
         />
       </div>
 
-      <audio ref={audioRef} id="backgroundMusic" loop preload="auto" className="hidden">
+      <audio ref={audioRef} loop preload="auto" autoPlay className="hidden">
         <source src="/audio.mpeg" type="audio/mpeg" />
       </audio>
     </>

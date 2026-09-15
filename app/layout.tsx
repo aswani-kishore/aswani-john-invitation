@@ -31,15 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${display.variable} ${serif.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {/*
-          THESIS: Invitation lives on cinematic media — video and music set the atmosphere; names lead.
-          OWN-WORLD: Full-bleed Video.mp4 with overlay.png veil; audio.mpeg on first gesture; white + gold #c4a35a; Bodoni Moda + Source Serif 4 + Karla.
-          STORY: Guest sees who, when, how soon, and where; taps Share Location to open or share the venue map.
-          FIRST VIEWPORT: Background video; centered intro, names, date, countdown, venue, Share Location.
-        */}
-        {children}
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

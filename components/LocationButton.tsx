@@ -1,0 +1,32 @@
+const LOCATION_URL = "https://share.google/GFI1miwu2bHCMtHFK";
+
+function PinIcon() {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 24 24"
+      className="h-[1.05rem] w-[1.05rem]"
+      fill="none"
+    >
+      <path
+        d="M12 21s-6.5-5.2-6.5-10.2A6.5 6.5 0 0 1 12 4.3a6.5 6.5 0 0 1 6.5 6.5C18.5 15.8 12 21 12 21Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="11" r="2.2" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function LocationButton() {
+  return (
+    <a
+      href={LOCATION_URL}
+      className="inline-flex h-12 w-full max-w-xs items-center justify-center gap-2.5 rounded-full border border-[#c4a35a]/70 bg-[#c4a35a]/15 px-6 font-sans text-[0.95rem] font-semibold tracking-wide text-white backdrop-blur-sm transition-[transform,background-color,border-color] duration-300 ease-out hover:border-[#c4a35a] hover:bg-[#c4a35a]/30 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c4a35a]"
+    >
+      <PinIcon />
+      <span>Location</span>
+    </a>
+  );
+}
