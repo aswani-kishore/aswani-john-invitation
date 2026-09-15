@@ -26,11 +26,11 @@ export default function Home() {
 
         <header className="invite-enter invite-enter-delay-1 mt-8">
           <h1 className="font-display text-[2.35rem] leading-[1.15] tracking-[-0.02em] text-white sm:text-[3rem]">
-            <span className="block">John V Alukkal</span>
+            <span className="block">Aswani Kishore</span>
             <span className="mt-2 block font-display text-[1.25rem] font-normal italic text-[#c4a35a] sm:text-[1.4rem]">
               &amp;
             </span>
-            <span className="mt-2 block">Aswani Kishore</span>
+            <span className="mt-2 block">John V Alukkal</span>
           </h1>
         </header>
 
