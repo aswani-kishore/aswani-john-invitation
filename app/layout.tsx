@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Bodoni_Moda, Source_Serif_4, Karla } from "next/font/google";
-import { BackgroundMusic } from "@/components/BackgroundMusic";
 import "./globals.css";
 
 const display = Bodoni_Moda({
@@ -33,7 +32,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${display.variable} ${serif.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <BackgroundMusic />
+        <audio
+          id="backgroundMusic"
+          autoPlay
+          loop
+          preload="auto"
+          className="pointer-events-none fixed top-0 left-0 h-px w-px opacity-0"
+        >
+          <source src="/audio.mp3" type="audio/mpeg" />
+        </audio>
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){var audio=document.getElementById("backgroundMusic");if(!audio)return;audio.volume=0.5;function clear(){document.removeEventListener("pointerdown",playMusic,true);document.removeEventListener("touchstart",playMusic,true);document.removeEventListener("click",playMusic,true)}function playMusic(){if(!audio.paused){clear();return}var result=audio.play();if(result&&result.then)result.then(clear).catch(function(){})}playMusic();audio.addEventListener("canplay",playMusic);document.addEventListener("DOMContentLoaded",playMusic);window.addEventListener("pageshow",playMusic);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")playMusic()});document.addEventListener("pointerdown",playMusic,true);document.addEventListener("touchstart",playMusic,true);document.addEventListener("click",playMusic,true)})();`,
