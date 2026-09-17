@@ -31,7 +31,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${display.variable} ${serif.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <audio
+          id="backgroundMusic"
+          src="/audio.mpeg"
+          autoPlay
+          loop
+          preload="auto"
+          className="pointer-events-none absolute h-0 w-0 opacity-0"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var audio=document.getElementById("backgroundMusic");if(!audio)return;audio.volume=0.5;function playMusic(){if(!audio.paused)return;var result=audio.play();if(result&&result.catch)result.catch(function(){})}playMusic();audio.addEventListener("canplay",playMusic);document.addEventListener("DOMContentLoaded",playMusic);window.addEventListener("pageshow",playMusic);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")playMusic()});})();`,
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
