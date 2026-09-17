@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type TransitionEvent } from "react";
+import { BackgroundMedia } from "@/components/BackgroundMedia";
 
 function SpeakerOnIcon() {
   return (
@@ -42,6 +43,7 @@ function SpeakerOffIcon() {
 
 export function InvitationGate({ children }: { children: React.ReactNode }) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [opened, setOpened] = useState(false);
   const [gateVisible, setGateVisible] = useState(true);
   const [musicOn, setMusicOn] = useState(true);
@@ -52,6 +54,12 @@ export function InvitationGate({ children }: { children: React.ReactNode }) {
     const playPromise = audio
       ? ((audio.volume = 0.5), (audio.muted = false), audio.play())
       : null;
+
+    const video = videoRef.current;
+    if (video) {
+      video.currentTime = 0;
+      void video.play().catch(() => {});
+    }
 
     setOpened(true);
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -98,6 +106,8 @@ export function InvitationGate({ children }: { children: React.ReactNode }) {
       >
         <source src="/audio.mp3" type="audio/mpeg" />
       </audio>
+
+      <BackgroundMedia playing={opened} videoRef={videoRef} />
 
       {opened ? children : null}
 

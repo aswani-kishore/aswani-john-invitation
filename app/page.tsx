@@ -1,4 +1,3 @@
-import { BackgroundMedia } from "@/components/BackgroundMedia";
 import { Countdown } from "@/components/Countdown";
 import { InvitationGate } from "@/components/InvitationGate";
 import { LocationButton } from "@/components/LocationButton";
@@ -16,8 +15,6 @@ function DiamondRule() {
 export default function Home() {
   return (
     <main className="relative flex min-h-full flex-1 flex-col items-center justify-center overflow-hidden px-5 py-10 sm:px-8 sm:py-14">
-      <BackgroundMedia />
-
       <InvitationGate>
         <div className="invite-enter relative z-10 flex w-full max-w-lg flex-col items-center text-center text-white">
           <p className="invite-enter invite-enter-delay-1 max-w-sm font-serif text-[0.95rem] leading-relaxed text-white/80 sm:text-[1.05rem]">
